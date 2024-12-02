@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Úvodní stránka</title>
     <style>
+        :root{
+            --primarni-barva: #97C4AF
+        }
         body, html {
             margin: 0;
             padding: 0;
@@ -20,6 +23,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+        .ver1{
+            background: linear-gradient(to right, #648190 0%, #536B78 100%);
+        }
+        .ver2{
+            background: linear-gradient(to right, #906464 0%, #785353 100%);
+        }
+        .ver3{
+            background: linear-gradient(to right, #908d64 0%, #787653 100%);
         }
         .wave {
             position: absolute;
@@ -41,7 +53,7 @@
         }
         .button {
             display: inline-block;
-            background-color: #97C4AF;
+            background-color: var(--primarni-barva);
             color: #fff;
             padding: 15px 30px;
             margin: 10px;
@@ -126,6 +138,33 @@
         .sticky-button:hover {
             background-color: #C8D5B9;
         }
+        .quick-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 200px;
+            height: 60px;
+            background-color: #97C4AF;
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 10px
+        }
+        .quick-menu a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .quick-menu a:hover{
+            background-color: #C8D5B9;
+        }
+        .opened{
+            display: flex;
+        }
         .footer {
             background-color: #648190;
             color: #f5f5f5;
@@ -157,14 +196,39 @@
             margin: 20px;
         }
     </style>
+    <script>
+        function toggleMenu(){
+            console.log("Menu clicked")
+            const menu = document.querySelector('.quick-menu')
+            menu.classList.toggle('opened')
+        }
+        function ver1(){
+            const ver = document.querySelector('.top-section')
+            ver.classList.remove('ver2')
+            ver.classList.remove('ver3')
+            ver.classList.add('ver1')
+        }
+        function ver2(){
+            const ver = document.querySelector('.top-section')
+            ver.classList.remove('ver1')
+            ver.classList.remove('ver3')
+            ver.classList.add('ver2')
+        }
+        function ver3(){
+            const ver = document.querySelector('.top-section')
+            ver.classList.remove('ver1')
+            ver.classList.remove('ver2')
+            ver.classList.add('ver3')
+        }
+    </script>
 </head>
 <body>
     <div class="top-section">
         <h1 class="title">Úvodní Stránka</h1>
         <div class="buttons-container">
-            <a href="#" class="button">Tlačítko 1</a>
-            <a href="#" class="button">Tlačítko 2</a>
-            <a href="#" class="button">Tlačítko 3</a>
+            <a href="#" class="button" onclick="ver1()">Tlačítko 1</a>
+            <a href="#" class="button" onclick="ver2()">Tlačítko 2</a>
+            <a href="#" class="button" onclick="ver3()">Tlačítko 3</a>
         </div>
         <div class="wave"></div>
     </div>
@@ -197,6 +261,10 @@
     <footer class="footer">
         Copyright SPŠ-CL &copy; 2024. All rights reserved.
     </footer>
-    <button class="sticky-button">+</button>
+    <button class="sticky-button" onclick="toggleMenu()">+</button>
+    <div class="quick-menu">
+        <a href="https://www.google.cz/">Google</a>
+        <a href="https://www.seznam.cz/">Seznam</a>
+    </div>
 </body>
 </html>
